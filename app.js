@@ -17,7 +17,7 @@ app.use((req, res, next) => {
     app.use(cors)
     next();
 })
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8081
 const handlebars = require("express-handlebars");
 app.engine("handlebars", handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars');
