@@ -25,7 +25,7 @@ function Logout() {
             axios.get("http://localhost:8081/usuario").then(({
                 data
             }) => {
-                axios.post('http://52.67.15.249:3000/api/logout', new URLSearchParams({
+                axios.post('http://54.94.24.245:3000/api/logout', new URLSearchParams({
                     'id': data.id,
                 })).then((response) => {
                     window.location.replace("http://localhost:8081")

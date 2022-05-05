@@ -1,5 +1,5 @@
 const axios = require('axios').default
-
+const url = process.env.NODE_URL_API
 const acesso = async (req, res) => {
     res.render('acesso', { layout: 'acesso', title: "Acesso" })
 }
@@ -7,13 +7,13 @@ const verificaToken = async (req, res, next) => {
     try {
         axios.get("http://localhost:8081/usuario").then(({ data }) => {
             if (data.id != "" || data.id != undefined || data.id || null) {
-                axios.post('http://52.67.15.249:3000/api/token', new URLSearchParams({
+                axios.post(url + '/api/token', new URLSearchParams({
                     "id": `${data.id}`
                 }
-                )).then(({data}) => {
-                    if(data.state){
+                )).then(({ data }) => {
+                    if (data.state) {
                         next()
-                    }else{
+                    } else {
                         res.redirect("/acesso")
                     }
                 })

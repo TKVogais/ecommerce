@@ -22,13 +22,13 @@ function AdicionarProduto() {
                             const IdUsuario = data.id
                             if (IdUsuario) {
                                 if (idProduto != "" || idProduto != undefined || idProduto || null) {
-                                    axios.post('http://52.67.15.249:3000/api/token', new URLSearchParams({
+                                    axios.post('http://54.94.24.245:3000/api/token', new URLSearchParams({
                                         "id": `${data.id}`
                                     })).then(({
                                         data
                                     }) => {
                                         if (data.state) {
-                                            axios.post('http://52.67.15.249:3000/api/addproduto', new URLSearchParams({
+                                            axios.post('http://54.94.24.245:3000/api/addproduto', new URLSearchParams({
                                                 "IdUsuario": `${IdUsuario}`,
                                                 "IdProduto": `${idProduto}`,
                                                 "Quant": `${Quantidade}`,

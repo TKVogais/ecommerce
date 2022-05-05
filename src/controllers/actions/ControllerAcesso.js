@@ -7,7 +7,7 @@ function EventoBotaoLogin() {
         const usuario = document.getElementById('l_user').value;
         const senha = document.getElementById('l_pass').value;
         if (usuario && senha != "") {
-            axios.post('http://52.67.15.249:3000/api/login', new URLSearchParams({
+            axios.post('http://54.94.24.245:3000/api/login', new URLSearchParams({
                 'usuario': `${usuario}`,
                 'senha': `${senha}`
             })).then((response) => {
@@ -34,7 +34,7 @@ function EventoBotaoCadastrar() {
         } else if (senha !== csenha) {
             MessagemFeedBack({ state: 403 })
         } else {
-            axios.post('http://52.67.15.249:3000/api/cadastro', new URLSearchParams({
+            axios.post('http://54.94.24.245:3000/api/cadastro', new URLSearchParams({
                 'usuario': `${usuario}`,
                 'senha': `${senha}`,
                 'email': `${email}`
