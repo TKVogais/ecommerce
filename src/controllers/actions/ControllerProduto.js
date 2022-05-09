@@ -5,9 +5,8 @@ for (let i in detalhes) {
     if (item) {
         item.addEventListener("click", (e) => {
             let data = e.target.parentNode.parentNode.getAttribute("produto")
-            console.log(data)
             if (data) {
-                window.location.href = `http://localhost:8081/detalhes/${data}`
+                window.location.href = `https://www.otakushopp.com/detalhes/${data}`
             }
         })
 
@@ -20,28 +19,30 @@ for (let i in adicionar) {
             let idProduto = e.target.parentNode.parentNode.getAttribute("produto")
             let IdUsuario
             try {
-                axios.get("http://localhost:8081/usuario").then(({ data }) => {
+                axios.get("https://www.otakushopp.com/usuario").then(({ data }) => {
                     IdUsuario = data.id
                     if (idProduto != "" || idProduto != undefined || idProduto || null) {
-                        axios.post('http://54.94.24.245:3000/api/token', new URLSearchParams({
+                        axios.post('http://www.api-otaku-shop.com.br/api/token', new URLSearchParams({
                             "id": `${data.id}`
                         }
                         )).then(({ data }) => {
                             if (data.state) {
-                                axios.post('http://54.94.24.245:3000/api/addproduto', new URLSearchParams({
+                                axios.post('http://www.api-otaku-shop.com.br/api/addproduto', new URLSearchParams({
                                     "IdUsuario": `${IdUsuario}`,
                                     "IdProduto": `${idProduto}`,
                                     "Quant": 1,
                                     "Size": null
                                 })).then((response) => {
-                                    window.location.href = `http://localhost:8081/carrinho`
+                                    if (response.data.affectedRows == 1) {
+                                        window.location.href = `https://www.otakushopp.com/carrinho`
+                                    }
                                 })
                             } else {
-                                window.location.href = `http://localhost:8081/acesso`
+                                window.location.href = `https://www.otakushopp.com/acesso`
                             }
                         })
                     } else {
-                        window.location.href = `http://localhost:8081/acesso`
+                        window.location.href = `https://www.otakushopp.com/acesso`
                     }
                 })
             } catch (error) {

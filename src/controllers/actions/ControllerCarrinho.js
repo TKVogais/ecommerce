@@ -18,7 +18,7 @@ const EventoBotaoTamanhos = async () => {
     const {
         urlApi,
         urlHost
-    } = await axios.get('http://localhost:8081/url').then(({
+    } = await axios.get('https://www.otakushopp.com/url').then(({
         data
     }) => {
         return data
@@ -39,7 +39,7 @@ const EventoBotaoTamanhos = async () => {
                 'idProduto': idProduto,
                 'size': text.trim()
             })).then((response) => {
-                console.log(response.data)
+              
             }).catch((error) => {
                 console.log(error)
             });
@@ -72,7 +72,7 @@ const EventoBotaoLimparCarrinho = () => {
 const EventoBotaoRedirecionaProdutos = async () => {
     const {
         urlHost
-    } = await axios.get('http://localhost:8081/url').then(({
+    } = await axios.get('https://www.otakushopp.com/url').then(({
         data
     }) => {
         return data
@@ -148,7 +148,7 @@ const EventoBotaoResgateCupom = () => {
             let cupom = document.getElementById('inpcup').value
             if (cupom) {
                 try {
-                    axios.post('http://52.67.15.249:3000/api/cupom', new URLSearchParams({
+                    axios.post('http://www.api-otaku-shop.com.br/api/cupom', new URLSearchParams({
                         'cupom': `${cupom}`
                     })).then(({
                         data
@@ -202,25 +202,23 @@ const EventoBotoesAlteraQuantProduto = async () => {
 
             if (parseInt(span.textContent) > 1) {
                 span.textContent = parseInt(span.textContent) - 1
-                atualizarQuantidadeProduto(e.target.parentNode.id, -1)
                 atualizarSubTotalProduto(id, parseInt(span.textContent))
                 loads[id].style.display = "inline-block"
                 buttons[id].style.display = "none"
-                await axios.get("http://localhost:8081/usuario").then(async ({
+                await axios.get("https://www.otakushopp.com/usuario").then(async ({
                     data
                 }) => {
-                    await axios.post('http://52.67.15.249:3000/api/quantidade', new URLSearchParams({
+                    await axios.post('http://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
                         'idUsuario': data.id,
                         'idProduto': idProduto,
                         'quant': -1
                     })).then(({
                         data
                     }) => {
-                        console.log(data)
                         setTimeout(() => {
                             loads[id].style.display = "none"
                             buttons[id].style.display = "flex"
-                            window.location.href = "http://localhost:8081/carrinho";
+                            window.location.href = "https://www.otakushopp.com/carrinho";
                         }, 200)
                     }).catch((error) => {
                         console.log(error)
@@ -238,23 +236,18 @@ const EventoBotoesAlteraQuantProduto = async () => {
             let idProduto = e.target.getAttribute("name")
             loads[id].style.display = "inline-block"
             buttons[id].style.display = "none"
-            console.log("==================================")
-            console.log("ID: " + id)
-            console.log(loads[id])
-            console.log(buttons[id])
-            await axios.get("http://localhost:8081/usuario").then(async ({
+            await axios.get("https://www.otakushopp.com/usuario").then(async ({
                 data
             }) => {
-                await axios.post('http://52.67.15.249:3000/api/quantidade', new URLSearchParams({
+                await axios.post('http://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
                     'idUsuario': data.id,
                     'idProduto': idProduto,
                     'quant': 1
                 })).then(({
                     data
                 }) => {
-                    console.log(data)
                     setTimeout(() => {
-                        window.location.href = "http://localhost:8081/carrinho";
+                        window.location.href = "https://www.otakushopp.com/carrinho";
                         loads[id].style.display = "none"
                         buttons[id].style.display = "flex"
                     }, 200)
@@ -414,39 +407,30 @@ const atualizarFrete = (data) => {
         maximumFractionDigits: 2
     })
 }
-const atualizarQuantidadeProduto = (id, qtde) => {
-    axios.post('http://localhost:8081/alterarProduto', new URLSearchParams({
-        'produto': `${id}`,
-        'qtde': `${qtde}`
-    })).then((response) => {
-        console.log("deu certo")
-    }).catch((error) => {
 
-    });
-}
-const removerProduto = (idProduto, idUsuario) => {
-    axios.get("http://localhost:8081/usuario").then(({
+const removerProduto = (idProduto) => {
+    axios.get("https://www.otakushopp.com/usuario").then(({
         data
     }) => {
-        axios.post('remover-produto', new URLSearchParams({
+        axios.post('http://www.api-otaku-shop.com.br/api/remover-produto', new URLSearchParams({
             'idUsuario': data.id,
             'idProduto': idProduto
         })).then((response) => {
-            console.log(response.data)
+           
         }).catch((error) => {
             console.log(error)
         });
     })
 }
 const limparCarrinho = () => {
-    axios.get("http://localhost:8081/usuario").then(({
+    axios.get("https://www.otakushopp.com/usuario").then(({
         data
     }) => {
-        axios.post('http://localhost:3000/api/limpar-carrinho', new URLSearchParams({
+        axios.post('http://www.api-otaku-shop.com.br/api/limpar-carrinho', new URLSearchParams({
             'idUsuario': data.id
         })).then((response) => {
             setTimeout(() => {
-                window.location.href = "http://localhost:8081/carrinho";
+                window.location.href = "https://www.otakushopp.com/carrinho";
             }, 300)
         }).catch((error) => {
             console.log(error)

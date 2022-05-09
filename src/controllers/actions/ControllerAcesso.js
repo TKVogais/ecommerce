@@ -7,7 +7,7 @@ function EventoBotaoLogin() {
         const usuario = document.getElementById('l_user').value;
         const senha = document.getElementById('l_pass').value;
         if (usuario && senha != "") {
-            axios.post('http://54.94.24.245:3000/api/login', new URLSearchParams({
+            axios.post('http://www.api-otaku-shop.com.br/api/login', new URLSearchParams({
                 'usuario': `${usuario}`,
                 'senha': `${senha}`
             })).then((response) => {
@@ -34,7 +34,7 @@ function EventoBotaoCadastrar() {
         } else if (senha !== csenha) {
             MessagemFeedBack({ state: 403 })
         } else {
-            axios.post('http://54.94.24.245:3000/api/cadastro', new URLSearchParams({
+            axios.post('http://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
                 'usuario': `${usuario}`,
                 'senha': `${senha}`,
                 'email': `${email}`
@@ -55,7 +55,7 @@ const MessagemFeedBack = ({ state }) => {
         notificacao.style.display = "none"
         switch (state) {
             case (200):
-                window.location.replace("http://localhost:8081")
+                window.location.replace("https://www.otakushopp.com")
                 break;
             case (201):
                 document.getElementById('c_user').value = "";
@@ -70,7 +70,7 @@ const MessagemFeedBack = ({ state }) => {
 
 
 const LocalStorageUsuario = ({ id_usuario }) => {
-    axios.put('http://localhost:8081/usuario', new URLSearchParams({
+    axios.put('https://www.otakushopp.com/usuario', new URLSearchParams({
         'id': `${id_usuario}`
     }))
 }

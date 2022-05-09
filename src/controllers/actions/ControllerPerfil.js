@@ -1,3 +1,4 @@
+let alter = false
 AlterarFotoPerfil()
 Logout()
 BuscarInformacoesComCep()
@@ -14,6 +15,7 @@ function AlterarFotoPerfil() {
                 document.querySelector('#image').setAttribute('src', fileReader.result)
             }
             fileReader.readAsDataURL(file)
+            alter = true
         })
     }
 }
@@ -22,13 +24,13 @@ function Logout() {
     const BtnLogout = document.getElementById("logout")
     if (BtnLogout) {
         BtnLogout.addEventListener('click', () => {
-            axios.get("http://localhost:8081/usuario").then(({
+            axios.get("https://www.otakushopp.com/usuario").then(({
                 data
             }) => {
-                axios.post('http://54.94.24.245:3000/api/logout', new URLSearchParams({
+                axios.post('http://www.api-otaku-shop.com.br/api/logout', new URLSearchParams({
                     'id': data.id,
                 })).then((response) => {
-                    window.location.replace("http://localhost:8081")
+                    window.location.replace("https://www.otakushopp.com")
                 }).catch((error) => {
                     console.log(error)
                 });
@@ -99,50 +101,58 @@ function EventoInputTelefone() {
 
 function AtualizarPerfil() {
     const BtnPerfil = document.getElementById('save-perfil')
+    const DivLoad = document.getElementById('content-load')
+    const DivButton = document.getElementById('content-button')
+
     if (BtnPerfil) {
         BtnPerfil.addEventListener('click', async () => {
-            const {
-                nome,
-                usuario,
-                email,
-                nascimento,
-                telefone,
-                cep,
-                estado,
-                cidade,
-                bairro,
-                rua,
-                numero,
-                complemento
-            } = document.getElementsByClassName('input-perfil');
+            let location = ""
+            const { nome, usuario, email, nascimento, telefone, cep, estado, cidade, bairro, rua, numero, complemento } = document.getElementsByClassName('input-perfil');
             let Image = document.querySelector('[name=file]')
-            let formData = new FormData()
-            formData.append('image', Image.files[0])
-            formData.append('Nome', nome.value)
-            formData.append('Usuario', usuario.value)
-            formData.append('Email', email.value)
-            formData.append('Nascimento', nascimento.value)
-            formData.append('Telefone', telefone.value)
-            formData.append('Cep', cep.value)
-            formData.append('Estado', estado.value)
-            formData.append('Cidade', cidade.value)
-            formData.append('Bairro', bairro.value)
-            formData.append('Rua', rua.value)
-            formData.append('Numero', numero.value)
-            formData.append('Complemento', complemento.value)
-            axios.get("http://localhost:8081/usuario").then(({
+            if (alter) {
+                let formData = new FormData()
+                formData.append('image', Image.files[0])
+                formData.append('Usuario', usuario.value)
+                const Path = await axios.post('https://www.otakushopp.com/upload-perfil', formData).then(({ data }) => {
+                    return data
+                }).catch((error) => {
+                    console.log(error)
+                })
+                location = Path.location
+            }
+
+            DivLoad.style.display = "flex"
+            DivButton.style.display = "none"
+            axios.get("https://www.otakushopp.com/usuario").then(({
                 data
             }) => {
-                formData.append('Id', data.id)
-                axios.post('http://52.67.15.249:3000/api/up-perfil', formData).then(({
-                    data
-                }) => {
-                    console.log(data)
+                axios.post('http://www.api-otaku-shop.com.br/api/atualizar', {
+                    Path: location,
+                    Nome: nome.value,
+                    Email: email.value,
+                    Nascimento: nascimento.value,
+                    Telefone: telefone.value,
+                    Cep: cep.value,
+                    Estado: estado.value,
+                    Cidade: cidade.value,
+                    Rua: rua.value,
+                    Numero: numero.value,
+                    Complemento: complemento.value,
+                    Id: data.id
+                }).then(({ data }) => {
+                    const Alert = document.getElementById('notificacao-' + data.state)
+                    setTimeout(() => {                
+                        DivLoad.style.display = "none"
+                        Alert.style.display = "flex"
+                    })
+                    setTimeout(() => {
+                        Alert.style.display = "none"
+                        DivButton.style.display = "flex"
+                    }, 2000, 1000)
                 }).catch((error) => {
                     console.log(error)
                 });
             })
-
         })
     }
 }

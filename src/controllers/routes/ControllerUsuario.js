@@ -5,7 +5,7 @@ const acesso = async (req, res) => {
 }
 const verificaToken = async (req, res, next) => {
     try {
-        axios.get("http://localhost:8081/usuario").then(({ data }) => {
+        axios.get("https://www.otakushopp.com/usuario").then(({ data }) => {
             if (data.id != "" || data.id != undefined || data.id || null) {
                 axios.post(url + '/api/token', new URLSearchParams({
                     "id": `${data.id}`

@@ -12,9 +12,9 @@
     </div>
     <div class="perfil-usuario-body">
         <div class="redes-sociales">
-            <a href="http://localhost:8081" class="boton-redes azul fas fa-home"></a>
-            <a href="http://localhost:8081/produtos" class="boton-redes verde fas fa-shopping-bag"></a>
-            <a href="http://localhost:8081/carrinho" class="boton-redes rosa fas fa-shopping-cart"></a>
+            <a href="https://www.otakushopp.com" class="boton-redes azul fas fa-home"></a>
+            <a href="https://www.otakushopp.com/produtos" class="boton-redes verde fas fa-shopping-bag"></a>
+            <a href="https://www.otakushopp.com/carrinho" class="boton-redes rosa fas fa-shopping-cart"></a>
             <button id="logout" class="boton-redes roxo fas fa-sign-out-alt"></button>
         </div>
     </div>
@@ -112,7 +112,7 @@
                     </div>
                 </form>
             </div>
-            <div class="content-button">
+            <div id="content-button" class="content-button">
                 <button id="save-perfil" type="button" class="button green1  right">
                     <span class="button__text">
                         Salvar Alterações
@@ -122,6 +122,17 @@
                     </span>
                 </button>
             </div>
+            <div id="notificacao-200" class="notificacao sucess">
+                <i class="fa-solid fa-circle-check"></i>
+                <p id="">Perfil atualizado com sucesso!</p>
+            </div>
+            <div id="notificacao-407" class="notificacao error">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p id="">Falha ao atualizar o perfil</p>
+            </div>
+            <div id="content-load" class="content-load">
+                <img src="/images/spinner-blue.gif" alt="">
+            </div>
         </div>
     </div>
-</section>
+</section> 
