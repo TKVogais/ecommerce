@@ -6,7 +6,7 @@ const bucket = process.env.NODE_S3_BUCKET
 const region = process.env.NODE_S3_BUCKET_REGION
 const accessKeyId = process.env.NODE_AWS_ID
 const secretAccessKey = process.env.NODE_S3_SECRET_ACESS_KEY
-
+const url = process.env.NODE_URL_HOST
 
 const s3 = new aws({
     region,
@@ -15,7 +15,7 @@ const s3 = new aws({
 })
 const uploadS3 = (file) => {
     console.log(file)
-    const fileStream = fs.createReadStream(file.path[0])
+    const fileStream = fs.createReadStream(url + "/" + file.path)
     const uploadParams = {
         Bucket: bucket,
         Body: fileStream,
