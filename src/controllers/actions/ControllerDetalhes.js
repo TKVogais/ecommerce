@@ -22,13 +22,13 @@ function AdicionarProduto() {
                             const IdUsuario = data.id
                             if (IdUsuario) {
                                 if (idProduto != "" || idProduto != undefined || idProduto || null) {
-                                    axios.post('http://www.api-otaku-shop.com.br/api/token', new URLSearchParams({
+                                    axios.post('https://www.api-otaku-shop.com.br/api/token', new URLSearchParams({
                                         "id": `${data.id}`
                                     })).then(({
                                         data
                                     }) => {
                                         if (data.state) {
-                                            axios.post('http://www.api-otaku-shop.com.br/api/addproduto', new URLSearchParams({
+                                            axios.post('https://www.api-otaku-shop.com.br/api/addproduto', new URLSearchParams({
                                                 "IdUsuario": `${IdUsuario}`,
                                                 "IdProduto": `${idProduto}`,
                                                 "Quant": `${Quantidade}`,

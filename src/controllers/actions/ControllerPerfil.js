@@ -27,7 +27,7 @@ function Logout() {
             axios.get("https://www.otakushopp.com/usuario").then(({
                 data
             }) => {
-                axios.post('http://www.api-otaku-shop.com.br/api/logout', new URLSearchParams({
+                axios.post('https://www.api-otaku-shop.com.br/api/logout', new URLSearchParams({
                     'id': data.id,
                 })).then((response) => {
                     window.location.replace("https://www.otakushopp.com")
@@ -126,7 +126,7 @@ function AtualizarPerfil() {
             axios.get("https://www.otakushopp.com/usuario").then(({
                 data
             }) => {
-                axios.post('http://www.api-otaku-shop.com.br/api/atualizar', {
+                axios.post('https://www.api-otaku-shop.com.br/api/atualizar', {
                     Path: location,
                     Nome: nome.value,
                     Email: email.value,

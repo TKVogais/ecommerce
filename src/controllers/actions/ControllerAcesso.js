@@ -7,7 +7,7 @@ function EventoBotaoLogin() {
         const usuario = document.getElementById('l_user').value;
         const senha = document.getElementById('l_pass').value;
         if (usuario && senha != "") {
-            axios.post('http://www.api-otaku-shop.com.br/api/login', new URLSearchParams({
+            axios.post('https://www.api-otaku-shop.com.br/api/login', new URLSearchParams({
                 'usuario': `${usuario}`,
                 'senha': `${senha}`
             })).then((response) => {
@@ -34,7 +34,7 @@ function EventoBotaoCadastrar() {
         } else if (senha !== csenha) {
             MessagemFeedBack({ state: 403 })
         } else {
-            axios.post('http://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
+            axios.post('https://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
                 'usuario': `${usuario}`,
                 'senha': `${senha}`,
                 'email': `${email}`

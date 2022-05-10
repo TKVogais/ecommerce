@@ -148,7 +148,7 @@ const EventoBotaoResgateCupom = () => {
             let cupom = document.getElementById('inpcup').value
             if (cupom) {
                 try {
-                    axios.post('http://www.api-otaku-shop.com.br/api/cupom', new URLSearchParams({
+                    axios.post('https://www.api-otaku-shop.com.br/api/cupom', new URLSearchParams({
                         'cupom': `${cupom}`
                     })).then(({
                         data
@@ -208,7 +208,7 @@ const EventoBotoesAlteraQuantProduto = async () => {
                 await axios.get("https://www.otakushopp.com/usuario").then(async ({
                     data
                 }) => {
-                    await axios.post('http://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
+                    await axios.post('https://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
                         'idUsuario': data.id,
                         'idProduto': idProduto,
                         'quant': -1
@@ -239,7 +239,7 @@ const EventoBotoesAlteraQuantProduto = async () => {
             await axios.get("https://www.otakushopp.com/usuario").then(async ({
                 data
             }) => {
-                await axios.post('http://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
+                await axios.post('https://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
                     'idUsuario': data.id,
                     'idProduto': idProduto,
                     'quant': 1
@@ -412,7 +412,7 @@ const removerProduto = (idProduto) => {
     axios.get("https://www.otakushopp.com/usuario").then(({
         data
     }) => {
-        axios.post('http://www.api-otaku-shop.com.br/api/remover-produto', new URLSearchParams({
+        axios.post('https://www.api-otaku-shop.com.br/api/remover-produto', new URLSearchParams({
             'idUsuario': data.id,
             'idProduto': idProduto
         })).then((response) => {
@@ -426,7 +426,7 @@ const limparCarrinho = () => {
     axios.get("https://www.otakushopp.com/usuario").then(({
         data
     }) => {
-        axios.post('http://www.api-otaku-shop.com.br/api/limpar-carrinho', new URLSearchParams({
+        axios.post('https://www.api-otaku-shop.com.br/api/limpar-carrinho', new URLSearchParams({
             'idUsuario': data.id
         })).then((response) => {
             setTimeout(() => {
