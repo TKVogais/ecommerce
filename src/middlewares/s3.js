@@ -14,6 +14,7 @@ const s3 = new aws({
     secretAccessKey
 })
 const uploadS3 = (file) => {
+    console.log(file)
     const fileStream = fs.createReadStream(file.path)
     const uploadParams = {
         Bucket: bucket,
