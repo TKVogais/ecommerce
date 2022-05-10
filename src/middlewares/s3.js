@@ -15,7 +15,7 @@ const s3 = new aws({
 })
 const uploadS3 = (file) => {
     console.log(file)
-    const fileStream = fs.createReadStream(file.path)
+    const fileStream = fs.createReadStream(file.path[0])
     const uploadParams = {
         Bucket: bucket,
         Body: fileStream,
