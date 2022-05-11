@@ -16,13 +16,16 @@ const s3 = new aws({
 const uploadS3 = (file) => {
     console.log(file)
     console.log("Caminho do Arquivo: /home/ubuntu/commerce" + file.path)
-    const fileStream = fs.createReadStream("/home/ubuntu/commerce/" + file.path)
-    const uploadParams = {
-        Bucket: bucket,
-        Body: fileStream,
-        Key: file.filename
+    // const fileStream = fs.createReadStream("/home/ubuntu/commerce/" + file.path)
+    // const uploadParams = {
+    //     Bucket: bucket,
+    //     Body: fileStream,
+    //     Key: file.filename
+    // }
+    // return s3.upload(uploadParams).promise()
+    return {
+        location: "A buceta de sua mãe"
     }
-    return s3.upload(uploadParams).promise()
 }
 
 
