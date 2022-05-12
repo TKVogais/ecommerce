@@ -35,7 +35,7 @@ function EventoBotaoCadastrar() {
             MessagemFeedBack({ state: 403 })
         } else {
             let ip = axios.get('https://www.otakushopp.com/ip').then((response) => {
-                console.loh(response)    
+                console.log(response)    
             })
 
 
