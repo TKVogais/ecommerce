@@ -13,15 +13,6 @@ router.get('/ip', async (req, res) => {
     })
 })
 
-
-
-router.get('/usuario', async (req, res) => {
-    let id = localStorage.getItem("usuario")
-    res.json({
-        id: id
-    })
-})
-
 router.get('/url', async (req, res) => {
     const urlApi = process.env.NODE_URL_API
     const urlHost = process.env.NODE_URL_HOST
