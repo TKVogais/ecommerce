@@ -6,6 +6,7 @@ const acesso = async (req, res) => {
 const verificaToken = async (req, res, next) => {
     try {
         const key = localStorage.getItem('key')
+        console.log("ID: " + key)
         if (key != "" || key != undefined || key || null) {
             axios.post(url + '/api/token', new URLSearchParams({
                 "id": `${key}`
