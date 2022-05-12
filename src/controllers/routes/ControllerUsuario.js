@@ -5,22 +5,21 @@ const acesso = async (req, res) => {
 }
 const verificaToken = async (req, res, next) => {
     try {
-        axios.get("https://www.otakushopp.com/usuario").then(({ data }) => {
-            if (data.id != "" || data.id != undefined || data.id || null) {
-                axios.post(url + '/api/token', new URLSearchParams({
-                    "id": `${data.id}`
-                }
-                )).then(({ data }) => {
-                    if (data.state) {
-                        next()
-                    } else {
-                        res.redirect("/acesso")
-                    }
-                })
-            } else {
-                res.redirect("/acesso")
+        const key = localStorage.getItem('key')
+        if (key != "" || key != undefined || key || null) {
+            axios.post(url + '/api/token', new URLSearchParams({
+                "id": `${key}`
             }
-        })
+            )).then(({ data }) => {
+                if (data.state) {
+                    next()
+                } else {
+                    res.redirect("/acesso")
+                }
+            })
+        } else {
+            res.redirect("/acesso")
+        }
     } catch (error) {
         res.redirect("/acesso")
     }

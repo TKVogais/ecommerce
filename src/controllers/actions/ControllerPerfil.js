@@ -24,17 +24,14 @@ function Logout() {
     const BtnLogout = document.getElementById("logout")
     if (BtnLogout) {
         BtnLogout.addEventListener('click', () => {
-            axios.get("https://www.otakushopp.com/usuario").then(({
-                data
-            }) => {
-                axios.post('https://www.api-otaku-shop.com.br/api/logout', new URLSearchParams({
-                    'id': data.id,
-                })).then((response) => {
-                    window.location.replace("https://www.otakushopp.com")
-                }).catch((error) => {
-                    console.log(error)
-                });
-            })
+            const key = localStorage.getItem('key')
+            axios.post('https://www.api-otaku-shop.com.br/api/logout', new URLSearchParams({
+                'id': key,
+            })).then((response) => {
+                window.location.replace("https://www.otakushopp.com")
+            }).catch((error) => {
+                console.log(error)
+            });
         })
     }
 }
@@ -123,36 +120,33 @@ function AtualizarPerfil() {
 
             DivLoad.style.display = "flex"
             DivButton.style.display = "none"
-            axios.get("https://www.otakushopp.com/usuario").then(({
-                data
-            }) => {
-                axios.post('https://www.api-otaku-shop.com.br/api/atualizar', {
-                    Path: location,
-                    Nome: nome.value,
-                    Email: email.value,
-                    Nascimento: nascimento.value,
-                    Telefone: telefone.value,
-                    Cep: cep.value,
-                    Estado: estado.value,
-                    Cidade: cidade.value,
-                    Rua: rua.value,
-                    Numero: numero.value,
-                    Complemento: complemento.value,
-                    Id: data.id
-                }).then(({ data }) => {
-                    const Alert = document.getElementById('notificacao-' + data.state)
-                    setTimeout(() => {                
-                        DivLoad.style.display = "none"
-                        Alert.style.display = "flex"
-                    })
-                    setTimeout(() => {
-                        Alert.style.display = "none"
-                        DivButton.style.display = "flex"
-                    }, 2000, 1000)
-                }).catch((error) => {
-                    console.log(error)
-                });
-            })
+            const key = localStorage.getItem('key')
+            axios.post('https://www.api-otaku-shop.com.br/api/atualizar', {
+                Path: location,
+                Nome: nome.value,
+                Email: email.value,
+                Nascimento: nascimento.value,
+                Telefone: telefone.value,
+                Cep: cep.value,
+                Estado: estado.value,
+                Cidade: cidade.value,
+                Rua: rua.value,
+                Numero: numero.value,
+                Complemento: complemento.value,
+                Id: key
+            }).then(({ data }) => {
+                const Alert = document.getElementById('notificacao-' + data.state)
+                setTimeout(() => {
+                    DivLoad.style.display = "none"
+                    Alert.style.display = "flex"
+                })
+                setTimeout(() => {
+                    Alert.style.display = "none"
+                    DivButton.style.display = "flex"
+                }, 2000, 1000)
+            }).catch((error) => {
+                console.log(error)
+            });
         })
     }
 }

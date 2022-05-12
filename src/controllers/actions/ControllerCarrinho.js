@@ -18,7 +18,7 @@ const EventoBotaoTamanhos = async () => {
     const {
         urlApi,
         urlHost
-    } = await axios.get('https://localhost:8081/url').then(({
+    } = await axios.get('https://www.otakushopp.com/url').then(({
         data
     }) => {
         return data
@@ -39,7 +39,7 @@ const EventoBotaoTamanhos = async () => {
                 'idProduto': idProduto,
                 'size': text.trim()
             })).then((response) => {
-              
+
             }).catch((error) => {
                 console.log(error)
             });
@@ -72,7 +72,7 @@ const EventoBotaoLimparCarrinho = () => {
 const EventoBotaoRedirecionaProdutos = async () => {
     const {
         urlHost
-    } = await axios.get('https://localhost:8081/url').then(({
+    } = await axios.get('https://www.otakushopp.com/url').then(({
         data
     }) => {
         return data
@@ -205,25 +205,22 @@ const EventoBotoesAlteraQuantProduto = async () => {
                 atualizarSubTotalProduto(id, parseInt(span.textContent))
                 loads[id].style.display = "inline-block"
                 buttons[id].style.display = "none"
-                await axios.get("https://www.otakushopp.com/usuario").then(async ({
+                const key = localStorage.getItem('key')
+                await axios.post('https://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
+                    'idUsuario': key,
+                    'idProduto': idProduto,
+                    'quant': -1
+                })).then(({
                     data
                 }) => {
-                    await axios.post('https://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
-                        'idUsuario': data.id,
-                        'idProduto': idProduto,
-                        'quant': -1
-                    })).then(({
-                        data
-                    }) => {
-                        setTimeout(() => {
-                            loads[id].style.display = "none"
-                            buttons[id].style.display = "flex"
-                            window.location.href = "https://www.otakushopp.com/carrinho";
-                        }, 200)
-                    }).catch((error) => {
-                        console.log(error)
-                    });
-                })
+                    setTimeout(() => {
+                        loads[id].style.display = "none"
+                        buttons[id].style.display = "flex"
+                        window.location.href = "https://www.otakushopp.com/carrinho";
+                    }, 200)
+                }).catch((error) => {
+                    console.log(error)
+                });
             } else {
                 deletaProduto(id, idProduto)
             }
@@ -236,25 +233,22 @@ const EventoBotoesAlteraQuantProduto = async () => {
             let idProduto = e.target.getAttribute("name")
             loads[id].style.display = "inline-block"
             buttons[id].style.display = "none"
-            await axios.get("https://www.otakushopp.com/usuario").then(async ({
+            const key = localStorage.getItem('key')
+            await axios.post('https://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
+                'idUsuario': key,
+                'idProduto': idProduto,
+                'quant': 1
+            })).then(({
                 data
             }) => {
-                await axios.post('https://www.api-otaku-shop.com.br/api/quantidade', new URLSearchParams({
-                    'idUsuario': data.id,
-                    'idProduto': idProduto,
-                    'quant': 1
-                })).then(({
-                    data
-                }) => {
-                    setTimeout(() => {
-                        window.location.href = "https://www.otakushopp.com/carrinho";
-                        loads[id].style.display = "none"
-                        buttons[id].style.display = "flex"
-                    }, 200)
-                }).catch((error) => {
-                    console.log(error)
-                });
-            })
+                setTimeout(() => {
+                    window.location.href = "https://www.otakushopp.com/carrinho";
+                    loads[id].style.display = "none"
+                    buttons[id].style.display = "flex"
+                }, 200)
+            }).catch((error) => {
+                console.log(error)
+            });
             let span = document.getElementById("span" + id)
             atualizarQuantidadeProduto(e.target.parentNode.id, 1)
             span.textContent = parseInt(span.textContent) + 1
@@ -409,31 +403,25 @@ const atualizarFrete = (data) => {
 }
 
 const removerProduto = (idProduto) => {
-    axios.get("https://www.otakushopp.com/usuario").then(({
-        data
-    }) => {
-        axios.post('https://www.api-otaku-shop.com.br/api/remover-produto', new URLSearchParams({
-            'idUsuario': data.id,
-            'idProduto': idProduto
-        })).then((response) => {
-           
-        }).catch((error) => {
-            console.log(error)
-        });
-    })
+    const key = localStorage.getItem('key')
+    axios.post('https://www.api-otaku-shop.com.br/api/remover-produto', new URLSearchParams({
+        'idUsuario': key,
+        'idProduto': idProduto
+    })).then((response) => {
+
+    }).catch((error) => {
+        console.log(error)
+    });
 }
 const limparCarrinho = () => {
-    axios.get("https://www.otakushopp.com/usuario").then(({
-        data
-    }) => {
-        axios.post('https://www.api-otaku-shop.com.br/api/limpar-carrinho', new URLSearchParams({
-            'idUsuario': data.id
-        })).then((response) => {
-            setTimeout(() => {
-                window.location.href = "https://www.otakushopp.com/carrinho";
-            }, 300)
-        }).catch((error) => {
-            console.log(error)
-        });
-    })
+    const key = localStorage.getItem('key')
+    axios.post('https://www.api-otaku-shop.com.br/api/limpar-carrinho', new URLSearchParams({
+        'idUsuario': key
+    })).then((response) => {
+        setTimeout(() => {
+            window.location.href = "https://www.otakushopp.com/carrinho";
+        }, 300)
+    }).catch((error) => {
+        console.log(error)
+    });
 }

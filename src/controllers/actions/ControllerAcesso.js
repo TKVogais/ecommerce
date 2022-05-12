@@ -12,7 +12,7 @@ function EventoBotaoLogin() {
                 'senha': `${senha}`
             })).then((response) => {
                 MessagemFeedBack(response.data)
-                LocalStorageUsuario(response.data)
+                localStorage.setItem("key", response.data.id_usuario)
             }).catch((error) => {
                 console.log(error);
             });
@@ -34,20 +34,15 @@ function EventoBotaoCadastrar() {
         } else if (senha !== csenha) {
             MessagemFeedBack({ state: 403 })
         } else {
-            console.log(localStorage.getItem("key"))
-
-
-            // axios.post('https://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
-            //     'usuario': `${usuario}`,
-            //     'senha': `${senha}`,
-            //     'email': `${email}`,
-            //     'ip': `${ip}`
-            // })).then((response) => {
-            //     MessagemFeedBack(response.data)
-
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
+            axios.post('https://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
+                'usuario': `${usuario}`,
+                'senha': `${senha}`,
+                'email': `${email}`
+            })).then((response) => {
+                MessagemFeedBack(response.data)
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     })
 }
@@ -71,4 +66,3 @@ const MessagemFeedBack = ({ state }) => {
         }
     }, 1200)
 }
-

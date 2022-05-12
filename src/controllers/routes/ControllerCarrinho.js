@@ -4,8 +4,8 @@ const url = process.env.NODE_URL_API
 const urlhost = process.env.NODE_URL_HOST
 
 const buscarCarrinho = async (req, res) => {
-    let {data} = await axios.get(urlhost+"/usuario")
-    axios.post(url + "/api/carrinho", { id: data.id }).then(
+    const key = localStorage.getItem('key')
+    axios.post(url + "/api/carrinho", { id: key }).then(
         (response) => {
             res.render('carrinho', {
                 title: "Carrinho",

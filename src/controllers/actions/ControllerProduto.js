@@ -17,34 +17,31 @@ for (let i in adicionar) {
     if (item) {
         item.addEventListener("click", (e) => {
             let idProduto = e.target.parentNode.parentNode.getAttribute("produto")
-            let IdUsuario
             try {
-                axios.get("https://www.otakushopp.com/usuario").then(({ data }) => {
-                    IdUsuario = data.id
-                    if (idProduto != "" || idProduto != undefined || idProduto || null) {
-                        axios.post('https://www.api-otaku-shop.com.br/api/token', new URLSearchParams({
-                            "id": `${data.id}`
-                        }
-                        )).then(({ data }) => {
-                            if (data.state) {
-                                axios.post('https://www.api-otaku-shop.com.br/api/addproduto', new URLSearchParams({
-                                    "IdUsuario": `${IdUsuario}`,
-                                    "IdProduto": `${idProduto}`,
-                                    "Quant": 1,
-                                    "Size": null
-                                })).then((response) => {
-                                    if (response.data.affectedRows == 1) {
-                                        window.location.href = `https://www.otakushopp.com/carrinho`
-                                    }
-                                })
-                            } else {
-                                window.location.href = `https://www.otakushopp.com/acesso`
-                            }
-                        })
-                    } else {
-                        window.location.href = `https://www.otakushopp.com/acesso`
+                const key = localStorage.getItem('key')
+                if (idProduto != "" || idProduto != undefined || idProduto || null) {
+                    axios.post('https://www.api-otaku-shop.com.br/api/token', new URLSearchParams({
+                        "id": `${key}`
                     }
-                })
+                    )).then(({ data }) => {
+                        if (data.state) {
+                            axios.post('https://www.api-otaku-shop.com.br/api/addproduto', new URLSearchParams({
+                                "IdUsuario": `${key}`,
+                                "IdProduto": `${idProduto}`,
+                                "Quant": 1,
+                                "Size": null
+                            })).then((response) => {
+                                if (response.data.affectedRows == 1) {
+                                    window.location.href = `https://www.otakushopp.com/carrinho`
+                                }
+                            })
+                        } else {
+                            window.location.href = `https://www.otakushopp.com/acesso`
+                        }
+                    })
+                } else {
+                    window.location.href = `https://www.otakushopp.com/acesso`
+                }
             } catch (error) {
                 console.log("Deu merda: " + error)
             }
