@@ -34,16 +34,22 @@ function EventoBotaoCadastrar() {
         } else if (senha !== csenha) {
             MessagemFeedBack({ state: 403 })
         } else {
-            axios.post('https://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
-                'usuario': `${usuario}`,
-                'senha': `${senha}`,
-                'email': `${email}`
-            })).then((response) => {
-                MessagemFeedBack(response.data)
-              
-            }).catch((error) => {
-                console.log(error);
-            });
+            let ip = axios.get('https://www.otakushopp.com/ip').then((response) => {
+                console.loh(response)    
+            })
+
+
+            // axios.post('https://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
+            //     'usuario': `${usuario}`,
+            //     'senha': `${senha}`,
+            //     'email': `${email}`,
+            //     'ip': `${ip}`
+            // })).then((response) => {
+            //     MessagemFeedBack(response.data)
+
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
         }
     })
 }
@@ -68,9 +74,3 @@ const MessagemFeedBack = ({ state }) => {
     }, 1200)
 }
 
-
-const LocalStorageUsuario = ({ id_usuario }) => {
-    axios.put('https://www.otakushopp.com/usuario', new URLSearchParams({
-        'id': `${id_usuario}`
-    }))
-}

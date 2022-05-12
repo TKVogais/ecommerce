@@ -18,7 +18,7 @@ const EventoBotaoTamanhos = async () => {
     const {
         urlApi,
         urlHost
-    } = await axios.get('https://www.otakushopp.com/url').then(({
+    } = await axios.get('https://localhost:8081/url').then(({
         data
     }) => {
         return data
@@ -72,7 +72,7 @@ const EventoBotaoLimparCarrinho = () => {
 const EventoBotaoRedirecionaProdutos = async () => {
     const {
         urlHost
-    } = await axios.get('https://www.otakushopp.com/url').then(({
+    } = await axios.get('https://localhost:8081/url').then(({
         data
     }) => {
         return data

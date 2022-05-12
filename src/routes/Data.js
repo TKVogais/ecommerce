@@ -1,25 +1,19 @@
-const { Router } = require("express");
+const { default: axios } = require("axios");
 const express = require("express");
 const router = express.Router();
-const LocalStorage = require('node-localstorage').LocalStorage
-localStorage = new LocalStorage('../scrath');
 require('dotenv').config()
 
 
-router.put('/usuario', async (req, res) => {
-    localStorage.setItem("usuario", req.body.id)
-    if (localStorage.getItem("usuario")) {
-        res.json({
-            state: 200,
-            message: "Usuário atualizado"
-        })
-    } else {
-        res.json({
-            state: 404,
-            message: "Houve algum problema"
-        })
-    }
+router.get('/ip', async (req, res) => {
+    let response = await axios.get("http://meuip.com/api/meuip.php").then(({ data }) => {
+        return data
+    })
+    res.json({
+        ip: response
+    })
 })
+
+
 
 router.get('/usuario', async (req, res) => {
     let id = localStorage.getItem("usuario")
