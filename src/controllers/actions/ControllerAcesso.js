@@ -34,9 +34,7 @@ function EventoBotaoCadastrar() {
         } else if (senha !== csenha) {
             MessagemFeedBack({ state: 403 })
         } else {
-            let ip = axios.get('https://www.otakushopp.com/ip').then((response) => {
-                console.log(response)    
-            })
+            console.log(localStorage.getItem("key"))
 
 
             // axios.post('https://www.api-otaku-shop.com.br/api/cadastro', new URLSearchParams({
