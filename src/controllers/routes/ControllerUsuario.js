@@ -12,14 +12,17 @@ const verificaToken = async (req, res, next) => {
                 "id": `${key}`
             }
             )).then(({ data }) => {
+                console.log(data)
                 if (data.state) {
                     next()
                 } else {
-                    res.redirect("/acesso", { data: key })
+                    console.log("ID: " + key)
+                    // res.redirect("/acesso", { data: key })
                 }
             })
         } else {
-            res.redirect("/acesso", { data: key })
+            console.log("ID: " + key)
+            // res.redirect("/acesso", { data: key })
         }
     } catch (error) {
         res.redirect("/acesso")
