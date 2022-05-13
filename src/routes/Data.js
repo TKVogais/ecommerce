@@ -11,4 +11,9 @@ router.get('/url', async (req, res) => {
     })
 })
 
+router.get('/teste', async (req, res) => {
+    const key = localStorage.getItem("key")
+    console.log(key)
+})
+
 module.exports = router;

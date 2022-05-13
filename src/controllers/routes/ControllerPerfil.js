@@ -5,7 +5,7 @@ const urlhost = process.env.NODE_URL_HOST
 const { uploadFile } = require('../../middlewares/s3')
 
 const buscarPerfil = async (req, res) => {
-    const key = localStorage.getItem('key')
+    const key = req.params.key
     axios.post(url + "/api/perfil", { id: key }).then(
         ({ data }) => {
             res.render('perfil', {

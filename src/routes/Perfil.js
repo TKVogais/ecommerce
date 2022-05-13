@@ -5,7 +5,7 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: './src/images/temp' })
 
-router.get('/perfil', verificaToken, ControllerPerfil.buscarPerfil);
+router.get('/perfil/:key', verificaToken, ControllerPerfil.buscarPerfil);
 router.post('/upload-perfil', upload.single('image'), ControllerPerfil.atualizarPerfil)
 
 
