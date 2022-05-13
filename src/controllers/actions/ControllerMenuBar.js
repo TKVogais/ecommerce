@@ -11,17 +11,17 @@ if (BtnHome) {
 }
 if (BtnProdutos) {
     BtnProdutos.addEventListener("click", () => {
-        window.location.href = "https://www.otakushopp.com//produtos"
+        window.location.href = "https://www.otakushopp.com/produtos"
     })
 }
 if (BtnPerfil) {
     BtnPerfil.addEventListener("click", () => {
         let key = localStorage.getItem("key")
-        window.location.href = `https://www.otakushopp.com//perfil/${key}`
+        window.location.href = `https://www.otakushopp.com/perfil/${key}`
     })
 }
 if (BtnProdutos) {
     BtnProdutos.addEventListener("click", () => {
-        window.location.href = "https://www.otakushopp.com//carrinho"
+        window.location.href = "https://www.otakushopp.com/carrinho"
     })
 }
