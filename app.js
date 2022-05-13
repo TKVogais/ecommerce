@@ -17,6 +17,9 @@ app.use((req, res, next) => {
     app.use(cors)
     next();
 })
+
+
+
 const port = process.env.PORT || 8081
 const handlebars = require("express-handlebars");
 app.engine("handlebars", handlebars({ defaultLayout: 'main' }))
@@ -33,10 +36,10 @@ Handlebars.registerHelper('MaiorQue', (value1, value2) => {
 //Carregando Rotas
 
 const RouteCarrinho = require('./src/routes/Carrinho')
-const RouteUsuario  = require('./src/routes/Usuario')
-const RouteData     = require('./src/routes/Data')
+const RouteUsuario = require('./src/routes/Usuario')
+const RouteData = require('./src/routes/Data')
 const RouteProdutos = require('./src/routes/Produtos')
-const RoutePerfil   = require('./src/routes/Perfil')
+const RoutePerfil = require('./src/routes/Perfil')
 
 //Configurando Rotas
 

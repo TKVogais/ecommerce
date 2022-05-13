@@ -17,7 +17,7 @@ if (BtnProdutos) {
 if (BtnPerfil) {
     BtnPerfil.addEventListener("click", () => {
         let key = localStorage.getItem("key")
-        window.location.href = `https://www.otakushopp.com/perfil/${key}`
+        window.location.href = `http://localhost:8081/perfil/${key}`
     })
 }
 if (BtnProdutos) {
