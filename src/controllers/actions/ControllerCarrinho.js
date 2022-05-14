@@ -30,12 +30,13 @@ const EventoBotaoTamanhos = async () => {
         Btns[i].id = "btn_size" + i
         document.getElementById('btn_size' + i).addEventListener("click", (e) => {
             text = e.target.textContent
+            const key = localStorage.getItem('key')
             id = e.target.parentNode.parentNode.parentNode.getAttribute("name")
             let idProduto = e.target.parentNode.parentNode.parentNode.getAttribute("mob")
             document.getElementById("Size" + id).textContent = text
             document.getElementById("btns" + id).style.display = "none"
             axios.post(urlApi + '/api/tamanho', new URLSearchParams({
-                'idUsuario': 1,
+                'idUsuario': key,
                 'idProduto': idProduto,
                 'size': text.trim()
             })).then((response) => {
