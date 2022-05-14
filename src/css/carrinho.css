@@ -339,7 +339,6 @@ span#totg {
 .alter-btn {
     display: flex;
     flex-direction: row;
-    z-index: 999;
     position: relative;
 }
 

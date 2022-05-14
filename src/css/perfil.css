@@ -640,3 +640,7 @@ input[type="date"] {
     flex-direction: column;
     margin-top: 10px;
 }
+
+.redes-sociales:hover div {
+    cursor: pointer;
+}
