@@ -419,7 +419,8 @@ const limparCarrinho = () => {
         'idUsuario': key
     })).then((response) => {
         setTimeout(() => {
-            window.location.href = "https://www.otakushopp.com/carrinho";
+            const Key = localStorage.getItem("key")
+            window.location.href = `https://www.otakushopp.com/carrinho/${Key}`;
         }, 300)
     }).catch((error) => {
         console.log(error)

@@ -31,7 +31,8 @@ function AdicionarProduto() {
                                             "Quant": `${Quantidade}`,
                                             "Size": `${Tamanho}`
                                         })).then((response) => {
-                                            window.location.href = `https://www.otakushopp.com/carrinho`
+                                            const Key = localStorage.getItem("key")
+                                            window.location.href = `https://www.otakushopp.com/carrinho/${Key}`
                                         })
                                     } else {
                                         window.location.href = `https://www.otakushopp.com/acesso`

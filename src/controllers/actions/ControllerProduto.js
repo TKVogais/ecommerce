@@ -32,7 +32,8 @@ for (let i in adicionar) {
                                 "Size": null
                             })).then((response) => {
                                 if (response.data.affectedRows == 1) {
-                                    window.location.href = `https://www.otakushopp.com/carrinho`
+                                    const Key = localStorage.getItem("key")
+                                    window.location.href = `https://www.otakushopp.com/carrinho/${Key}`
                                 }
                             })
                         } else {
