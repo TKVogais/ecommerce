@@ -20,8 +20,9 @@ if (BtnPerfil) {
         window.location.href = `https://www.otakushopp.com/perfil/${Key}`
     })
 }
-if (BtnProdutos) {
+if (BtnCarrinho) {
     BtnProdutos.addEventListener("click", () => {
-        window.location.href = "https://www.otakushopp.com/carrinho"
+        let Key = localStorage.getItem("key")
+        window.location.href = "https://www.otakushopp.com/carrinho/${Key}"
     })
 }

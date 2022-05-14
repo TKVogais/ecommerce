@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 
-router.get('/carrinho', verificaToken, ControllerCarrinho.buscarCarrinho);
+router.get('/carrinho/:key', verificaToken, ControllerCarrinho.buscarCarrinho);
 
 
 
