@@ -182,6 +182,10 @@
     background-color: #e400ab
 }
 
+.rosa :hover {
+    cursor: pointer;
+}
+
 .roxo {
     background-color: #630bd6;
     cursor: pointer;
@@ -596,7 +600,7 @@ input[type="date"] {
 .content-load img {
     height: 120px;
     width: 120px;
-    
+
 }
 
 .notificacao {
@@ -627,7 +631,8 @@ input[type="date"] {
 .error {
     color: #c71111;
 }
-.box-options{
+
+.box-options {
     height: 80px;
     display: flex;
     justify-content: center;
