@@ -44,7 +44,7 @@ for (let i in adicionar) {
                     window.location.href = `https://www.otakushopp.com/acesso`
                 }
             } catch (error) {
-                console.log("Deu merda: " + error)
+                console.log(error)
             }
         })
 

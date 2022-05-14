@@ -137,7 +137,7 @@ const EventoCalculoFrete = () => {
                     atualizarTotalGeral();
                 }
             }).catch((error) => {
-                console.log("Essa merda ta dando erro: " + error);
+                console.log( error);
             });
         }
     })

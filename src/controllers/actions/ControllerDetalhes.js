@@ -43,7 +43,7 @@ function AdicionarProduto() {
                             }
                         }
                     } catch (error) {
-                        console.log("Deu merda: " + error)
+                        console.log(error)
                     }
                 }
             })

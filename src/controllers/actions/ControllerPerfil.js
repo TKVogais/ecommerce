@@ -5,6 +5,7 @@ BuscarInformacoesComCep()
 EventoInputTelefone()
 AtualizarPerfil()
 
+
 function AlterarFotoPerfil() {
     const img = document.querySelector('[name=file]')
     if (img) {
@@ -19,6 +20,7 @@ function AlterarFotoPerfil() {
         })
     }
 }
+
 
 function Logout() {
     const BtnLogout = document.getElementById("logout")
