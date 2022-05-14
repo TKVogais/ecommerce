@@ -438,3 +438,8 @@ form {
     left: 50%;
   }
 }
+
+.box-warnings{
+  height: 50px;
+  width: auto;
+}

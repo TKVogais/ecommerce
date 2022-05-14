@@ -217,7 +217,7 @@ const EventoBotoesAlteraQuantProduto = async () => {
                     setTimeout(() => {
                         loads[id].style.display = "none"
                         buttons[id].style.display = "flex"
-                        window.location.href = "https://www.otakushopp.com/carrinho";
+                        // window.location.href = "https://www.otakushopp.com/carrinho";
                     }, 200)
                 }).catch((error) => {
                     console.log(error)
@@ -243,7 +243,7 @@ const EventoBotoesAlteraQuantProduto = async () => {
                 data
             }) => {
                 setTimeout(() => {
-                    window.location.href = "https://www.otakushopp.com/carrinho";
+                    // window.location.href = "https://www.otakushopp.com/carrinho";
                     loads[id].style.display = "none"
                     buttons[id].style.display = "flex"
                 }, 200)
@@ -251,7 +251,6 @@ const EventoBotoesAlteraQuantProduto = async () => {
                 console.log(error)
             });
             let span = document.getElementById("span" + id)
-            atualizarQuantidadeProduto(e.target.parentNode.id, 1)
             span.textContent = parseInt(span.textContent) + 1
             atualizarSubTotalProduto(id, parseInt(span.textContent))
         })
