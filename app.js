@@ -32,15 +32,6 @@ Handlebars.registerHelper('MaiorQue', (value1, value2) => {
     }
 });
 
-Handlebars.registerHelper('Path', (path) => {
-    if (path == "" || path == undefined || path == null) {
-        return `<img id="image" name="imagem" src="/images/avatar/default.png" alt="" />`
-    } else {
-        return `<img id="image" name="imagem" src="${path}" alt="" />`
-    }
-});
-
-
 //Carregando Rotas
 
 const RouteCarrinho = require('./src/routes/Carrinho')

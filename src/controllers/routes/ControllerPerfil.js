@@ -6,8 +6,12 @@ const { uploadFile } = require('../../middlewares/s3')
 
 const buscarPerfil = async (req, res) => {
     const key = req.params.key
+
     axios.post(url + "/api/perfil", { id: key }).then(
         ({ data }) => {
+            if (data.Path == "" || data.Path == null || data.Path == undefined) {
+                data.Path = "/images/avatar/default.png"
+            }
             res.render('perfil', {
                 title: "Perfil",
                 perfil: data,
