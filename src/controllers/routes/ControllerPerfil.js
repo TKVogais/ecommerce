@@ -48,17 +48,7 @@ const atualizarPerfil = async (req, res) => {
 }
 const RenameFile = (file, usuario) => {
     let filename = ''
-    switch (file.mimetype) {
-        case 'image/jpeg':
-            filename = usuario + ".jpeg"
-            break;
-        case 'image/png':
-            filename = usuario + ".png"
-            break;
-        case 'image/jpg':
-            filename = usuario + ".jpg"
-            break;
-    }
+    filename = usuario + ".jpeg"
     file.filename = filename
     file.originalname = filename
     return file
