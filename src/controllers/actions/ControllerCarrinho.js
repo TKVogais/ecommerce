@@ -110,10 +110,12 @@ const EventoBotaoDeletaProduto = () => {
 }
 const EventoCalculoFrete = () => {
     const BtnCalcularFrete = document.getElementById("calcep")
+    const LoadFrete = document.getElementById('load-frete')
     BtnCalcularFrete.addEventListener("click", () => {
         let cep = document.getElementById('inpfrete').value
-        let remetente = {}
-        document.getElementById('inpfrete').value = ""
+        let remetente = {};
+        document.getElementById('inpfrete').value = "";
+        LoadFrete.style.display = "block";
         if (!cep == "") {
             axios.get(`https://viacep.com.br/ws/47970-000/json/`).then(response => {
                 remetente = response.data
@@ -122,45 +124,53 @@ const EventoCalculoFrete = () => {
                 if (response.data.hasOwnProperty('erro')) {
                     setarMensagem('status-frete', "Cep Inválido")
                 } else {
-                    if (remetente.localidade === response.data.localidade) {
-                        atualizarFrete({
-                            valor: 10,
-                            prazoEntrega: 2
-                        })
-                    } else {
-                        vfrete = response.data.valor
-                        atualizarFrete({
-                            valor: 30,
-                            prazoEntrega: 12
-                        })
-                    }
-                    atualizarTotalGeral();
+                    setTimeout(() => {
+                        LoadFrete.style.display = "none"
+                        if (remetente.localidade === response.data.localidade) {
+                            atualizarFrete({
+                                valor: 10,
+                                prazoEntrega: 2
+                            })
+                        } else {
+                            vfrete = response.data.valor
+                            atualizarFrete({
+                                valor: 30,
+                                prazoEntrega: 12
+                            })
+                        }
+                        atualizarTotalGeral();
+                    }, 1200)
                 }
             }).catch((error) => {
-                console.log( error);
+                console.log(error);
             });
         }
     })
 }
 const EventoBotaoResgateCupom = () => {
     const BtnResgateCupom = document.getElementById("btn_resgatar")
+    const LoadCupom = document.getElementById('load-cupom')
     if (BtnResgateCupom) {
         BtnResgateCupom.addEventListener("click", () => {
             let cupom = document.getElementById('inpcup').value
             if (cupom) {
+                LoadCupom.style.display = "block"
                 try {
                     axios.post('https://www.api-otaku-shop.com.br/api/cupom', new URLSearchParams({
                         'cupom': `${cupom}`
                     })).then(({
                         data
                     }) => {
-                        datacupom = data
-                        if (data.State == 200) {
-                            atualizaCupom(data)
-                            atualizarSubTotalGeral();
-                            atualizarTotalGeral();
-                        }
-                        setarMensagem('status-cupom', data.Message)
+                        setTimeout(() => {
+                            LoadCupom.style.display = "none"
+                            datacupom = data
+                            if (data.State == 200) {
+                                atualizaCupom(data)
+                                atualizarSubTotalGeral();
+                                atualizarTotalGeral();
+                            }
+                            setarMensagem('status-cupom', data.Message)
+                        }, 1200)
                     }).catch((error) => {
                         console.log(error)
                     });

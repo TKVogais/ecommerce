@@ -4,6 +4,17 @@
     background-color: #245bd3;
 }
 
+.load-perfil{
+    position: absolute;
+    top: 395px;
+    left: 320px;
+    height: 60px;
+    width: 60px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
 .seccion-perfil-usuario .perfil-usuario-body,
 .seccion-perfil-usuario {
     display: flex;

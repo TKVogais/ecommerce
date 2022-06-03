@@ -34,7 +34,10 @@ body {
     position: relative;
     z-index: 1;
 }
-
+.blue{
+    background-color: #124edb;
+    margin-left: 25px;
+}
 h1,
 h2,
 h3,
@@ -300,13 +303,15 @@ li {
 
 .btn {
     display: inline-block;
-    background-color: #fc7c7c;
     padding: 1.2rem 4rem;
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
     margin-top: 3rem;
     border-radius: 8px;
+}
+.rose{
+    background-color: #fc7c7c;
 }
 
 @media only screen and (max-width: 1200px) {

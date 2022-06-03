@@ -40,6 +40,7 @@ function Logout() {
 
 function BuscarInformacoesComCep() {
     const Cep = document.getElementById('cep')
+    const Load = document.getElementById('load-perfil')
     if (Cep) {
         Cep.addEventListener('keypress', () => {
             if (Cep.value.length == 5) {
@@ -49,6 +50,7 @@ function BuscarInformacoesComCep() {
         Cep.addEventListener('focusout', () => {
             try {
                 if (Cep.value.length === 9) {
+                    Load.style.display = "flex";
                     axios.get(`https://viacep.com.br/ws/${Cep.value}/json/`).then((response) => {
                         const auto = document.getElementsByClassName('auto');
                         for (let i = 0; i < auto.length; i++) {
@@ -67,6 +69,9 @@ function BuscarInformacoesComCep() {
                                     break;
                             }
                         }
+                        setTimeout(()=>{
+                            Load.style.display = "none"
+                        }, 1200)
                     }).catch((error) => {
                         console.log(error);
                     });
