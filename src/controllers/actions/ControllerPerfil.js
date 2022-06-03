@@ -138,6 +138,7 @@ function AtualizarPerfil() {
                 Estado: estado.value,
                 Cidade: cidade.value,
                 Rua: rua.value,
+                Bairro: bairro.value,
                 Numero: numero.value,
                 Complemento: complemento.value,
                 Id: key
