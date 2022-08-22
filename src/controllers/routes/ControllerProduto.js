@@ -23,4 +23,9 @@ const buscarProdutos = (req, res) => {
     })
 }
 
-module.exports = { buscarDestaques, buscarDetalhes, buscarProdutos }
+const health = (req, res)=>{
+    res.json({
+        state: 200
+    })
+}
+module.exports = { buscarDestaques, buscarDetalhes, buscarProdutos, health }
